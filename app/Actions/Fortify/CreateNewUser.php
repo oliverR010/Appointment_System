@@ -10,7 +10,8 @@ use Laravel\Jetstream\Jetstream;
 use RealRashid\SweetAlert\Facades\Alert;
 use Twilio\Rest\Client;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Actions\Fortify\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -24,6 +25,28 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+
+        if($input['identificationtypeothers'] != null){
+            $input['identificationtype'] = $input['identificationtypeothers'];
+
+        }
+
+      if($input['email'] != null){
+        $input['email'] =  mb_strtolower( $input['email']);
+      
+      }
+       
+
+     
+
+        Validator::make($input, [
+            'contactnumber' => 'required|regex:/^[9][0-9]{9}$/'
+
+            ])->validate();
+
+        $input['contactnumber'] = '+63'.$input['contactnumber'] ;
+
+
         Validator::make($input, [
             'firstname' => ['required', 'string', 'max:255'],
             'middlename' => ['required', 'string', 'max:255'],
@@ -35,12 +58,24 @@ class CreateNewUser implements CreatesNewUsers
             'birthdate' => ['required', 'string', 'max:255'],
             'identification' => ['required', 'image', 'mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
             'identificationtype' => ['required', 'string', 'max:255'],
-            'contactnumber' => 'required|regex:/^[9][0-9]{9}$/|unique:users',
+            'contactnumber' => 'required|unique:users',
             'address' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => 'required|email|max:255|regex:/(.*)@gmail\.com/i|unique:users',
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
+
+        // $check = DB::table('users')->where('contactnumber',"+63".$input['contactnumber'])->first();
+
+        
+       
+        // if($check->email != null){
+
+
+        //     return view('auth/register')->withErrors("phone number exist!");
+            
+        // }
+        // dd("aa");
 
         // $request->file('image')->getClientOriginalName();
         // $request->identification->store('images','public');
@@ -84,9 +119,9 @@ class CreateNewUser implements CreatesNewUsers
             'gender' => $input['gender'],
             'lastname' => $input['lastname'],
             'age' => $input['age'],
-            
+            'barangay' => $input['barangay'],
             'birthdate' => $input['birthdate'],
-            'contactnumber' => "+63".$input['contactnumber'],
+            'contactnumber' => $input['contactnumber'],
             'identification' => $identificationName,
             'identificationtype' => $input['identificationtype'],
             'address' => $input['address'],

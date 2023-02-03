@@ -19,6 +19,10 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\appointment_PDF;
 use App\Http\Controllers\AppointmentExcelController;
+use App\Http\Controllers\MailerController;
+
+
+
 
 
 
@@ -329,3 +333,43 @@ Route::get('/', 'App\Http\Controllers\IndexController@index')->name('index');
 // });
 
 
+Route::get("/forgot/password", [MailerController::class, "email"])->name("email");
+
+
+Route::any("/send-email", [MailerController::class, "composeEmail"])->name("send-email");
+
+
+Route::get("/forgot/password/reset/{token}", [MailerController::class, "showResetForm"])->name("reset.password.form");
+
+Route::any('/password/reset',[MailerController::class, "resetPassword"])->name('reset.password');
+
+
+// //inputing the code
+// // Route::post("/email/confirm-code", [MailerController::class, "retrived_code"])->name("retrived_code");
+
+// Route::post("/confirm_otp", [MailerController::class, "confirm_otp"])->name("confirm_otp");
+
+
+
+// Route::get('/email/confirm-code', function () {
+//   return view('confirm-email');
+// })->name('retrived_code');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get("/email/confirm-code/new-password", [MailerController::class, "password_reset"])->name("password_reset");
+
+Route::post("/email/confirm-code/password_update", [MailerController::class, "password_update"])->name("password_update");

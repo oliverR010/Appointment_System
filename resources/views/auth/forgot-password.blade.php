@@ -1,12 +1,15 @@
 <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+        <x-jet-authentication-card class="">
+            <x-slot name="logo">
+        <div class="jusity-content-center"></div>
         </x-slot>
-
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        <div class="text-blue-600">
+           <p class="text-blue-600 py-5 bg-succes"> Forgot your password?</p> 
         </div>
+        <div class="mb-4 text-sm text-gray-600 pt-5">
+            {{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to make a new password for your account.') }}
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">

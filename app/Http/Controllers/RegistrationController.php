@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Facades\Storage;
+use Twilio\Rest\Client;
 
 class RegistrationController extends Controller
 {
@@ -62,11 +63,26 @@ class RegistrationController extends Controller
         $approve = User::find($approve_id);
         $approve ->status = "approved";
         $approve->update();
+
+        $message1 = "Your Registration at Dapitan Health Center has been approved!\n";
+        $message2 = "You can now make an appointment.\n";
+        $link = "wwww . dapitanhealthcenter . com";
+        $message3 = "\nFor more information about our services kindly visit our website ".$link;
+
+        $message = $message1.$message2.$message3;
       
+        $recipient= $approve->contactnumber;
+    
+
+      // $this->sendMessage($message, $recipient);
+
         if(Auth::User()->account_type=='admin'){
       alert()->success('Reistration Approved')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
 
+
+          
             return redirect()->back();
+
           }else{
             return redirect()->route('login');
           }
@@ -82,9 +98,19 @@ class RegistrationController extends Controller
 
         if(Auth::User()->account_type=='admin'){
 
-          
-      alert()->success('Registration Rejected')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
+          $message1 = "Your registration on Dapitan Health Center has been Declined!\n\n";
+          $link = "wwww . dapitanhealthcenter . com";
 
+        $message2= "For more information kindly visit our website ".$link;
+        $message = $message1.$message2;
+        $recipient = $reject->contactnumber;
+        
+
+           $this->sendMessage($message, $recipient);
+           dd($recipient);
+      alert()->success('Registration Rejected','The resident will be notified about the status of this registration')->showConfirmButton()->buttonsStyling(true);
+
+      
             return redirect()->back();
           }else{
             return redirect()->route('login');
@@ -118,7 +144,7 @@ class RegistrationController extends Controller
         if(Auth::User()->account_type=='admin'){
 
         
-          alert()->success('Successfully Delete')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
+          alert()->success('Successfully Deleted')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
             return redirect()->back();
           }else{
             return redirect()->route('login');
@@ -133,7 +159,7 @@ class RegistrationController extends Controller
       $delete_account->delete();
 
      
-      alert()->success('Successfully Delete')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
+      alert()->success('Successfully Deleted')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
 
       return redirect()->back();
 
@@ -154,6 +180,18 @@ class RegistrationController extends Controller
     
     
      }  
+
+     private function sendMessage($messages, $recipient)
+     {
+         
+         $account_sid = getenv("TWILIO_SID");
+         $auth_token = getenv("TWILIO_AUTH_TOKEN");
+         $twilio_number = getenv("TWILIO_NUMBER");
+         $client = new Client($account_sid, $auth_token);
+         $client->messages->create($recipient, ['from' => $twilio_number, 'body' => $messages]);
+ 
+ 
+     }
 
 
         

@@ -210,16 +210,16 @@
                   <table class="table table-hover w-100"  id="reistration_data" >
                     <thead>
                         <tr class="text-center">
-                          <th scope="col" class="text-center">Email</th>
-                          <th scope="col" class="text-center" >Fullname</th>
-                          <th scope="col" class="text-center" >Age</th>
-                          <th scope="col" class="text-center" >Gender</th>
-                          <th scope="col" class="text-center" >Birthdate</th>
-                          <th scope="col" class="text-center" >Address</th>
-                          <th scope="col" class="text-center">Contact No</th>
-                          <th scope="col" class="text-center" >ID</th>
-                          <th scope="col" class="text-center" >Status</th>
-                          <th scope="col" class="text-center" style="width: 200px" class="text-center">Action</th>
+                          <th scope="col" style="width:5%" class="text-center">Email</th>
+                          <th scope="col" style="width:10%"  class="text-center" >Fullname</th>
+                          <th scope="col"  style="width:10%" class="text-center" >Age</th>
+                          <th scope="col"  style="width:10%" class="text-center" >Gender</th>
+                          <th scope="col"  style="width:10%" class="text-center" >Birthdate</th>
+                          <th scope="col"  style="width:10%" class="text-center" >Address</th>
+                          <th scope="col"  style="width:10%" class="text-center">Contact No</th>
+                          <th scope="col"  style="width:10%" class="text-center" >ID</th>
+                          <th scope="col"  style="width:10%" class="text-center" >Status</th>
+                          <th scope="col"  style="width:10%" class="text-center" style="width: 200px" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -231,7 +231,7 @@
                         <td>{{$data->age}}</td>
                         <td>{{$data->gender}}</td>
                         <td>{{$data->birthdate}}</td>
-                        <td>{{$data->address}}</td>
+                        <td>{{$data->address}}, Barangay{{$data->barangay}}</td>
                         <td>{{$data->contactnumber}}</td>
                         <td> <button class="btn btn-sm btn-info view bi bi-eye" value="{{$data->id}}">
                           </button>
@@ -463,10 +463,13 @@
                   url: "/admin/view_identification/"+identification,
                   success: function (response) {
                       console.log(response);
-                      $('#image').val(response.identification.identification)
+                      if(response!=null){
+                        $('#image').val(response.identification.identification)
                       $('#image_id').val(response.identification.id)
                       $('#id_type').text(response.identification.identificationtype);
                       $('#view_image').attr('src', '/storage/'+response.identification.identification);
+                      }
+                    
                       // console.log(response.identification.identification);
                   }, error: function(error) {
                     console.log(error);
@@ -511,8 +514,8 @@
                                 Swal.fire({
                                 position: 'center',
                                 icon: 'success',
-                                title: 'Announcement save!',
-                                text: 'announcement has been successfully save.',
+                                title: 'Successfully Added',
+                                text: 'account has been save.',
                                 showConfirmButton: false,
                                 timer: 1500
                             

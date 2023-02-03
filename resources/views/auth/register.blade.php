@@ -19,6 +19,13 @@
     margin-bottom: 10px;
 }
 
+.wrapper{
+width:200px;
+padding:20px;
+height: 150px;
+}
+
+
 .second-row{
 
 }
@@ -79,7 +86,7 @@
                 <div class="col-12 col-lg-4">
                     <x-jet-label for="birthdate" class="mt-2" value="{{ __('Birthdate') }}" />
 
-                    <input type="date" id="birthdate" name="birthdate" :value="old('birthdate')" required autofocus autocomplete="birthdate" class ="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <input type="date" id="birthdate" max="{{\Carbon\Carbon::today()->format('Y-m-d')}}" name="birthdate" :value="old('birthdate')" required autofocus autocomplete="birthdate" class ="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                 </div>
             
                 </div>
@@ -133,10 +140,10 @@
                     <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
             </div>
-                <div class="row mt-2 mb-4">
-                    <div class="col">
+                <div class="row mt-2">
+                    <div class="col  " style="">
                         <x-jet-label for="identificationtype" class="" value="{{ __('Identification Type') }}" />
-                        <select name="identificationtype" id="identificationtype" class ="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :value="old('identificationtype')" required autofocus autocomplete="identificationtype">
+                        <select name="identificationtype" id="identificationtype" class ="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" :value="old('identificationtype')"  autofocus autocomplete="identificationtype">
                             <option value="">Select Identification.. </option>
                             <option value="drivers license">Driver’s License </option>
                             <option value="Passport">Passport </option>
@@ -146,22 +153,61 @@
                             <option value="UMID">UMID</option>
                             <option value="Voter’s ID">Voter’s ID</option>
                             <option value="PSA">PSA</option>
-                            {{-- <option value="Others">Others</option> --}}
+                            <option value="1">Others</option>
 
                         </select>
               
                     
                     </div>
-                    
-                                   
-                                        
+                  
                                
                                 
                 </div> 
-                <div class="row mt-2">
+                <div class="row  mb-4" id="others">
+                    <div class="col  " style="" >
+                        <x-jet-label for="identificationtype" class="" value="{{ __('Enter Identification') }}" />
+                        <x-jet-input id="identificationtypeothers" class="block mt-1 w-full" type="text" name="identificationtypeothers"  :value="old('identificationtypeothers')"   />
+                    </div>
+                </div>
+                        
+                <script>
+ $(document).ready(function () {
+    $("#others").hide();
+
+    
+
+            $(document).on('change', '#identificationtype',function (e) {
+                    e.preventDefault();
+
+                    console.log($(this).val());
+                   
+                    if($(this).val() == "1"){
+                        $("#others").show();
+                        
+                        $("#identificationtype").prop('required',false);
+
+                        $("#identificationtypeothers").prop('required',true);
+                        
+                    }else{
+                        $("#others").hide();
+                        $("#identificationtypeothers").val("");
+                        $("#identificationtypeothers").prop('required',false);
+                        $("#identificationtype").prop('required',true);
+
+                    }
+
+
+                });
+
+    });
+
+
+                </script>
+                                    
+                <div class="row mt-4">
                     <div class="col">
                         
-                    <input type="file" id="identification" name="identification" class="">
+                    <input type="file" id="identification" name="identification" class="" required>
                     </div>
                 </div> 
             </div>

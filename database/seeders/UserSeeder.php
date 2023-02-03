@@ -33,9 +33,9 @@ class UserSeeder extends Seeder
            'identificationtype'=> Str::random(10),
            'contactnumber'=> Str::random(10),
            'address'=> Str::random(10),
-           'email'=> "admin@gmail.com",
+           'email'=> "oliverjansen16@gmail.com",
            'status'=> "approved",
-          'account_type'=>"admin",
+          'account_type'=>"user",
           'password' =>bcrypt('qweqweqwe'),
         ]);
         

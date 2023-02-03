@@ -36,6 +36,7 @@ class User extends Authenticatable
         'identification',
         'identificationtype',
         'birthdate',
+        'barangay',
         'contactnumber',
         'address',
         'status',

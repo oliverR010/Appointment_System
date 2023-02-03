@@ -435,18 +435,19 @@ class AppointmentsController extends Controller
         
             // echo $mytime->toDateTimeString();
     
-            $message_schedule = "Service ". $service_name ." has been scheduled!";
+            $message_schedule = "Service ". $service_name ." has been scheduled on ".$appointmentDate.".";
             $expire = Carbon::now()->addHours(48);
     
-            $expiration_date = "Reminder! \n your slot will be forfeited if you didn't attend your scheduled appointment.";
+            $expiration_date = "\n Reminder! \n your slot will be forfeited if you didn't attend your scheduled appointment.";
             $message_appointment = $message_schedule."\n".$expiration_date;
             
+         
             // temporary disabled text message
             // $this->sendMessage($message_appointment, $contactnumber);
             
             // $appointment_expirationdate = Carbon::now()->addHours(48)->toDateTimeString();
           
-            
+            // dd($message_appointment);
             // $appointment ->appointment_expiration_date = $appointment_expirationdate;
     
             //==============================================
@@ -482,7 +483,9 @@ class AppointmentsController extends Controller
         if(Auth::User()->account_type=='admin' || Auth::User()->account_type=='staff' ){
           return view('services');
           }else{
-            return redirect()->route('calendar')->with('warning', "Please insert a service");
+            
+        alert()->error('No service available')->showConfirmButton(false)->buttonsStyling(false)->autoClose(1500);
+            return redirect()->route('calendar');
           }
       }
 
@@ -818,9 +821,16 @@ public function reschedule_appointment(Request $request){
 
     
       if($request ->input ('cancel_message') == null){
-        $message ="Your " . $service . " Appointment has been canceled!";
+        $message1 ="Your " . $service . " Appointment in Dapitan Health Center has been canceled! \n";
+        $link = "wwww . dapitanhealthcenter . com";
+        $message2= "For more information about our services kindly visit our website ".$link;
+        $message = $message1."\n".$message2;
+
       }else{
-        $message = $request->input('cancel_message');
+        $link = "wwww . dapitanhealthcenter . com";
+        $message2= "For more information about our services kindly visit our website ".$link;
+        $message1 = $request->input('cancel_message');
+        $message = $message1."\n\n".$message2;
       }
       // $canceled_appointment_id ->appointment_message = $message;
       $canceled_appointment_id ->appointment_status = "canceled";
@@ -832,7 +842,7 @@ public function reschedule_appointment(Request $request){
       //temporary disabled function
         // $this->sendMessage($message, $recipient);
 
-
+    
       // ------------------------------------------------------------------------------------
       if(Auth::User()->account_type=='admin'){
         return redirect()->back()->with('success', 'Notification Sent!');

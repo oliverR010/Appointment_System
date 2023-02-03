@@ -524,7 +524,7 @@
                                         Swal.fire({
                                                     icon: 'error',
                                                     title: 'Appointment Not Found',
-                                                    text: 'your appointment is not today.',
+                                                    text: 'appointment is not today.',
                                               
                                                   })
 
@@ -690,7 +690,7 @@ scanner.addListener('scan', content => {
               Swal.fire({
                           icon: 'error',
                           title: 'Appointment Not Found',
-                          text: 'your appointment is not today.',
+                          text: 'appointment is not today.',
                     
                         })
 

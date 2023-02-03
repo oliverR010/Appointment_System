@@ -30,6 +30,8 @@ class LoginController extends Controller
               return redirect()->route('calendar');
         }else if(Auth::User()->account_type=='staff'){
             return redirect()->route('staff_scanner');
+        }else{
+            return view ('auth.login');
         }
     }
 

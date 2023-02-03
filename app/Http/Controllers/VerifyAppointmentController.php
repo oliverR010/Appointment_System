@@ -138,10 +138,13 @@ class VerifyAppointmentController extends Controller
         $message2 = "Your Queue # is : ".$queue+1;
        
         $messages = $message1."\n\n".$message2;
-        $recipient = "+639691324344";
-        // $recipient = $appointment_que->user_contactnumber;
+    
+        $recipient = $appointment_que->user_contactnumber;
 
+        // dd($messages);
         // $this->sendMessage($messages, $recipient);
+
+    
 
         $dd = appointments::where("appointment_date",$new_appointment_date)
         ->where("appointment_id",$appointment_id)

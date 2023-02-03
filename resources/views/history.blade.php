@@ -54,12 +54,7 @@
                       </thead>
                       <tbody>
                   
-                              @if($appointmentss->isEmpty())      
-                              <td colspan="5" class="text-center">
-                                  No Data
-                              </td>
-                      
-                              @endif
+                          
                                   @foreach($appointmentss as $value)
                                     <tr class="text-center ">
                                     <td >{{$value->appointment_services}}</td>

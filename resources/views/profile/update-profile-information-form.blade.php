@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Update your account\'s profile Image') }}
     </x-slot>
 
     <x-slot name="form">
@@ -59,16 +59,29 @@
             <x-jet-input-error for="name" class="mt-2" />
         </div> --}}
         <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
+        {{-- <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="contactnumber" value="{{ __('Mobile Number') }}" />
             <x-jet-input id="contactnumber" type="text" class="mt-1 block w-full" wire:model.defer="state.contactnumber" autocomplete="contactnumber" />
             <x-jet-input-error for="contactnumber" class="mt-2" />
-        </div> 
+        </div>  --}}
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <div class="drop-shadow-md p-5">
+                <h1 class="  text-md p-2"><b>Name:</b> {{Auth::user()->lastname}}, {{Auth::user()->firstname}}, {{Auth::user()->middlename}}</h1>
+                <h1 class=" text-md p-2"><b>Phone No:  </b>{{Auth::user()->contactnumber}}</h1>
+                <h1 class=" text-md p-2"><b>Email: </b>{{Auth::user()->email}}</h1>
+
+                
+                <br>
+                <h1 class=" text-md p-2"><b>Age: </b>{{Auth::user()->age}}</h1>
+                <h1 class="  text-md p-2"><b>Gender: </b>{{Auth::user()->gender}}</h1>
+                <h1 class=" text-md p-2"><b>Address: </b>{{Auth::user()->address}}, Brangay {{Auth::user()->barangay}}</h1>
+     
+            </div>
+
+            {{-- <x-jet-label for="email" value="{{ __('Email') }}" />   
+            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" /> --}}
             <x-jet-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())

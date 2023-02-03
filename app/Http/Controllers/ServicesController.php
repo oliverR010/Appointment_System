@@ -421,7 +421,7 @@ if($check_others_service_availability == "Yes"){
   $appointment ->id = $request ->input ('service_id');
   $appointment ->service = $request ->input ('service');
   $appointment ->availability = $request ->input ('choice_service');
-  $appointment ->availableslot = $request ->input ('available_slot');
+  // $appointment ->availableslot = $request ->input ('available_slot');
 
 
 if($request ->input ('id') == $request ->input ('service_id')){

@@ -156,7 +156,7 @@
                                             <td colspan="3">
                                                 No Data
                                             </td>
-                                        @else
+                                    @else
                                     @endif
                                     @foreach ($categories as $value)
                                     <option value="{{ $value->id }}"> 
@@ -601,60 +601,60 @@
                             </thead>
                         
                             <tbody class="text-center">
-                                @if($services->isEmpty())      
-                                <td colspan="6">
-                                    No Data
-                                </td>
-                        
-                                @endif
+                            
                                 @foreach($services as $service)
                                 <div >
-                                        <tr class="text-center ">
+                                    <tr class="text-center ">
 
+                                    
+                                    <td class="" > 
+                                        {{-- <button class="btn btn-sm btn-warning mt-2 mt-lg-0  w-100 edit_service_field" value="{{$service->id}}">Edit</button> --}}
+                                        <button class="btn btn-info btn-sm max-width:200px mt-2  edit_service_field bi bi-eye" value="{{$service->id}}">
                                         
-                                        <td class="" > 
-                                            {{-- <button class="btn btn-sm btn-warning mt-2 mt-lg-0  w-100 edit_service_field" value="{{$service->id}}">Edit</button> --}}
-                                            <button class="btn btn-info btn-sm max-width:200px mt-2  edit_service_field bi bi-eye" value="{{$service->id}}">
-                                            
-                                            </button>
-                                            
-                                        </td>
-                                        <td >{{$service->id}}</td>
-                                        <td >{{$service->service}}</td>
-                                        <td class="">
-                                            <div class="">
-                                                @if($service->availability == "Yes")
-                                                    <button class="btn btn-sm mt-3 mt-lg-0 bi bi-circle-fill green-color" style="pointer-events: none;"></button>
-                                                @else
-                                                    <button class="btn btn-sm  mt-3 mt-lg-0 bi bi-circle-fill red-color" style="pointer-events: none;"></button>
-                                                    
-                                                @endif
-                                            </div>
-
-                                        </td>
-
-
-                                        <td scope="row" class="d-sm-flex justify-content-center">
-                                            
-                                            {{-- <button class="btn btn-sm btn-warning mt-2 mt-lg-0 ml-lg-1 w-100 edit_btn" value="{{$service->id}}">Edit</button> --}}
-                                            <button class="btn btn-sm btn-success mt-2 edit_btn" value="{{$service->id}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                                </svg>
-                                            </button>
-                                        {{-- <button class="btn btn-sm btn-danger mt-2 mt-lg-0 ml-lg-1 w-100 delete_service" value="{{$service->id}}">Delete</button> --}}
-                                        <button class="btn btn-sm btn-danger mt-2 mt-lg-2 ml-lg-1 delete_service" value="{{$service->id}}">
-                                        
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-trash3" viewBox="0 0 16 16">
-                                                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                                                    </svg>
                                         </button>
-                                        </td>
-                                        </tr>
-                                      
-                                </div>
-                                @endforeach
+                                        
+                                    </td>
+                                    <td >{{$service->id}}</td>
+                                    <td >{{$service->service}}</td>
+                                    <td class="">
+                                        <div class="">
+                                            @if($service->availability == "Yes")
+                                                <button class="btn btn-sm mt-3 mt-lg-0 bi bi-circle-fill green-color" style="pointer-events: none;"></button>
+                                            @else
+                                                <button class="btn btn-sm  mt-3 mt-lg-0 bi bi-circle-fill red-color" style="pointer-events: none;"></button>
+                                                
+                                            @endif
+                                        </div>
+
+                                    </td>
+
+
+                                    <td scope="row" class="d-sm-flex justify-content-center">
+                                        
+                                        {{-- <button class="btn btn-sm btn-warning mt-2 mt-lg-0 ml-lg-1 w-100 edit_btn" value="{{$service->id}}">Edit</button> --}}
+                                        <button class="btn btn-sm btn-success mt-2 edit_btn" value="{{$service->id}}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                            </svg>
+                                        </button>
+                                    {{-- <button class="btn btn-sm btn-danger mt-2 mt-lg-0 ml-lg-1 w-100 delete_service" value="{{$service->id}}">Delete</button> --}}
+                                    <button class="btn btn-sm btn-danger mt-2 mt-lg-2 ml-lg-1 delete_service" value="{{$service->id}}">
+                                    
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                                                </svg>
+                                    </button>
+                                    </td>
+                                    </tr>
+                                  
+                            </div>
+                            @endforeach
+
+                          
+
+
+                            
                              
                                  
                             </tbody>
@@ -694,13 +694,7 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-center" >
-                                    @if($categories->isEmpty())
-                                        <td colspan="3">
-                                            No Data
-                                        </td>
-                                    
-                                    
-                                    @endif
+                            
                                 @foreach($categories as $category)
                                     <tr class="text-center">
                                     <td>{{$category->id}}</td>
@@ -763,51 +757,50 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center" >
-                                        @if($vaccines_kids->isEmpty())
-                                            <td colspan="4">
-                                                No Data
-                                            </td>
-                                        @endif
+                                   
                                         @foreach($vaccines_kids as $vaccine)
-                                            <tr class="text-center">
-                                            <td>{{$vaccine->category}}</td>
-                                            <td>
-                                                @if($vaccine->dose !== null)
+                                        <tr class="text-center">
+                                        <td>{{$vaccine->category}}</td>
+                                        <td>
+                                            @if($vaccine->dose !== null)
 
-                                                    @if($vaccine->dose == 1)
-                                                        1st dose ,
-                                                    @elseif($vaccine->dose == 2 )
-                                                        2nd dose , 
-                                                    @elseif ($vaccine->dose == 3)
-                                                        Booster , 
-                                                    @endif
+                                                @if($vaccine->dose == 1)
+                                                    1st dose ,
+                                                @elseif($vaccine->dose == 2 )
+                                                    2nd dose , 
+                                                @elseif ($vaccine->dose == 3)
+                                                    Booster , 
                                                 @endif
-                                                {{$vaccine->vaccine_type}}</td>
-                                            <td>{{$vaccine->vaccine_slot}}</td>
+                                            @endif
+                                            {{$vaccine->vaccine_type}}</td>
+                                        <td>{{$vaccine->vaccine_slot}}</td>
 
-                                            <td class="">
-                                                <div class="">
-                                                    @if($vaccine->vaccine_availability == "Yes")
-                                                        <button class="btn btn-sm mt-3 mt-lg-0 bi bi-circle-fill green-color" style="pointer-events: none;"></button>
-                                                        
+                                        <td class="">
+                                            <div class="">
+                                                @if($vaccine->vaccine_availability == "Yes")
+                                                    <button class="btn btn-sm mt-3 mt-lg-0 bi bi-circle-fill green-color" style="pointer-events: none;"></button>
                                                     
+                                                
 
-                                                    @else
-                                                        <button class="btn btn-sm  mt-3 mt-lg-0 bi bi-circle-fill red-color" style="pointer-events: none;"></button>
-                                                        
-                                                    @endif
-                                                </div>
-                                            
-                                            
-                                            </td>
-                                            <td scope="row" class="d-sm-flex justify-content-center">
-                                                        
-                                                <button class="btn btn-sm btn-success mt-2 mt-lg-0 edit_vaccine bi bi-pencil-square" value="{{$vaccine->id}}"></button>
-                                            <button class="btn btn-sm btn-danger mt-2 mt-lg-0 ml-lg-1 delete_vaccine bi bi-trash3" value="{{$vaccine->id}}"> </button>
-                                            </td>
-                                            
-                                            </tr>
-                                        @endforeach
+                                                @else
+                                                    <button class="btn btn-sm  mt-3 mt-lg-0 bi bi-circle-fill red-color" style="pointer-events: none;"></button>
+                                                    
+                                                @endif
+                                            </div>
+                                        
+                                        
+                                        </td>
+                                        <td scope="row" class="d-sm-flex justify-content-center">
+                                                    
+                                            <button class="btn btn-sm btn-success mt-2 mt-lg-0 edit_vaccine bi bi-pencil-square" value="{{$vaccine->id}}"></button>
+                                        <button class="btn btn-sm btn-danger mt-2 mt-lg-0 ml-lg-1 delete_vaccine bi bi-trash3" value="{{$vaccine->id}}"> </button>
+                                        </td>
+                                        
+                                        </tr>
+                                    @endforeach
+
+                          
+                                      
                                     </tbody>
                                 </table>
                             </div>
@@ -844,15 +837,10 @@
                                 <tbody class="text-center" id="table_other_services" name="table_other_services">
                                     
                                     
-                                    @if($other_services->isEmpty())
-                                    
-                                            <td colspan="6">
-                                                No Data
-                                            </td>
-                                    @else
-                                    
-                                    @endif
-                                @foreach($other_services as $value)
+                            
+
+
+                                    @foreach($other_services as $value)
                                     <tr class="text-center">
                                  
                                     <td>{{$value->service}}</td>
@@ -887,6 +875,8 @@
                                     </tr>
                                     
                                 @endforeach
+                                 
+                           
                                 </tbody>
                             
                             </table>                 
@@ -927,6 +917,7 @@
 
 
         $(document).ready( function () {
+            
             $('#service_table').DataTable();
         });
 
@@ -939,6 +930,7 @@
     });
 
     $(document).ready( function () {
+        
         $('#others_table_data').DataTable();
     });
 
